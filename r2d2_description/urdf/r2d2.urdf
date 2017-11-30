@@ -1,0 +1,299 @@
+<?xml version='1.0'?>
+<robot name='My First'>
+
+	<material name='blue'>
+		<color rgba='0 0 1.0 1'/>
+	</material>
+	<material name='white'>
+		<color rgba='1 1 1 1'/>
+	</material>
+	<material name='black'>
+		<color rgba='0 0 0 1'/>
+	</material>
+
+<!-- BASE -->
+	<link name='base_link'>
+		<visual>
+			<geometry>
+				<cylinder radius='0.2' length='0.6'/>
+			</geometry>
+			<material name='blue'/>
+			<origin xyz='0 0 0'/>
+		</visual>
+		<inertial>
+	      <origin rpy="0 0 0" xyz="0 0 0"/>
+	      <mass value="0.0001"/>
+	      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+	    </inertial>
+		<collision>
+			<geometry>
+				<cylinder radius='0.2' length='0.6'/>
+			</geometry>
+			<origin xyz='0 0 0'/>
+		</collision>
+	</link>
+
+<!-- RIGHT LEG & JOINT -->
+	<link name='right_leg'>
+		<visual>
+			<geometry>
+				<box size='0.6 0.1 0.2'/>
+			</geometry>
+			<material name='white'/>
+			<origin rpy='0 1.57075 0' xyz='0 0 -0.3'/>
+		</visual>
+		<!-- <inertial>
+	      <origin rpy="0 0 0" xyz="0 0 0"/>
+	      <mass value="0.0001"/>
+	      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+	    </inertial> -->
+	    <collision>
+			<geometry>
+				<box size='0.6 0.1 0.2'/>
+			</geometry>
+			<origin rpy='0 1.57075 0' xyz='0 0 -0.3'/>
+		</collision>
+	</link>
+		<joint name='body_to_right_leg' type='fixed'>
+			<parent link='base_link'/>
+			<child link='right_leg'/>
+			<origin xyz='0 0.22 0.25'/>
+		</joint>
+
+	<!-- RIGHT LEG & BASE JOINT -->
+		<link name='right_leg_base'>
+			<visual>
+				<geometry>
+					<box size='0.4 0.1 0.1'/>
+				</geometry>
+				<material name='white'/>
+			</visual>
+			<!-- <inertial>
+	      <origin rpy="0 0 0" xyz="0 0 0"/>
+	      <mass value="0.0001"/>
+	      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+	    </inertial> -->
+	    	<collision>
+				<geometry>
+					<box size='0.4 0.1 0.1'/>
+				</geometry>
+			</collision>
+		</link>
+			<joint name='right_leg_to_base' type='fixed'>
+				<parent link='right_leg'/>
+				<child link='right_leg_base'/>
+				<origin xyz='0 0 -0.65'/>
+			</joint>
+
+		<!-- RIGHT BASE & WHEELS -->
+			<link name='right_front_wheel'>
+				<visual>
+					<geometry>
+						<cylinder radius='0.035' length='0.1'/>
+					</geometry>
+					<origin rpy='1.57075 0 0' xyz='0 0 0'/>
+					<material name='black'/>
+				</visual>
+				<!-- <inertial>
+			      <origin rpy="0 0 0" xyz="0 0 0"/>
+			      <mass value="0.0001"/>
+			      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+			    </inertial> -->
+			    <collision>
+					<geometry>
+						<cylinder radius='0.035' length='0.1'/>
+					</geometry>
+					<origin rpy='1.57075 0 0' xyz='0 0 0'/>
+				</collision>
+			</link>
+				<joint name='right_front_wheel_to_rightbase' type='fixed'>
+					<parent link='right_leg_base'/>
+					<child link='right_front_wheel'/>
+					<origin rpy='0 0 0' xyz='0.133333333333 0 -0.090'/>
+				</joint>
+			<link name='right_rear_wheel'>
+				<visual>
+					<geometry>
+						<cylinder radius='0.035' length='0.1'/>
+					</geometry>
+					<origin rpy='1.57075 0 0' xyz='-0.25 0 0'/>
+					<material name='black'/>
+				</visual>
+				<!-- <inertial>
+			      <origin rpy="0 0 0" xyz="0 0 0"/>
+			      <mass value="0.0001"/>
+			      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+			    </inertial> -->
+			    <collision>
+					<geometry>
+						<cylinder radius='0.035' length='0.1'/>
+					</geometry>
+					<origin rpy='1.57075 0 0' xyz='-0.25 0 0'/>
+				</collision>
+			</link>
+				<joint name='right_rear_wheel_to_rightbase' type='fixed'>
+					<parent link='right_leg_base'/>
+					<child link='right_rear_wheel'/>
+					<origin rpy='0 0 0' xyz='0.133333333333 0 -0.090'/>
+				</joint>
+
+	<!-- LEFT LEG & BASE JOINT -->
+		<link name='left_leg_base'>
+			<visual>
+				<geometry>
+					<box size='0.4 0.1 0.1'/>
+				</geometry>
+				<material name='white'/>
+			</visual>
+			<!-- <inertial>
+		      <origin rpy="0 0 0" xyz="0 0 0"/>
+		      <mass value="0.0001"/>
+		      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+		    </inertial> -->
+		    <collision>
+				<geometry>
+					<box size='0.4 0.1 0.1'/>
+				</geometry>
+			</collision>
+		</link>
+			<joint name='left_leg_base' type='fixed'>
+				<parent link='left_leg'/>
+				<child link='left_leg_base'/>
+				<origin xyz='0 0 -0.65'/>
+			</joint>
+
+		<!-- LEFT BASE & WHEELS -->
+			<link name='left_front_wheel'>
+				<visual>
+					<geometry>
+						<cylinder radius='0.035' length='0.1'/>
+					</geometry>
+					<origin rpy='1.57075 0 0' xyz='0 0 0'/>
+					<material name='black'/>
+				</visual>
+				<!-- <inertial>
+			      <origin rpy="0 0 0" xyz="0 0 0"/>
+			      <mass value="0.0001"/>
+			      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+			    </inertial> -->
+			    <collision>
+					<geometry>
+						<cylinder radius='0.035' length='0.1'/>
+					</geometry>
+					<origin rpy='1.57075 0 0' xyz='0 0 0'/>
+				</collision>
+			</link>
+				<joint name='left_front_wheel_to_rightbase' type='fixed'>
+					<parent link='left_leg_base'/>
+					<child link='left_front_wheel'/>
+					<origin rpy='0 0 0' xyz='0.133333333333 0 -0.090'/>
+				</joint>
+			<link name='left_rear_wheel'>
+				<visual>
+					<geometry>
+						<cylinder radius='0.035' length='0.1'/>
+					</geometry>
+					<origin rpy='1.57075 0 0' xyz='-0.25 0 0'/>
+					<material name='black'/>
+				</visual>
+				<!-- <inertial>
+			      <origin rpy="0 0 0" xyz="0 0 0"/>
+			      <mass value="0.0001"/>
+			      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+			    </inertial> -->
+			    <collision>
+					<geometry>
+						<cylinder radius='0.035' length='0.1'/>
+					</geometry>
+					<origin rpy='1.57075 0 0' xyz='-0.25 0 0'/>
+				</collision>
+			</link>
+				<joint name='left_rear_wheel_to_leftbase' type='fixed'>
+					<parent link='left_leg_base'/>
+					<child link='left_rear_wheel'/>
+					<origin rpy='0 0 0' xyz='0.133333333333 0 -0.090'/>
+				</joint>
+
+<!-- LEFT LEG & JOINT -->
+	<link name='left_leg'>
+		<visual>
+			<geometry>
+				<box size='0.6 0.1 0.2'/>
+			</geometry>
+			<material name='white'/>
+			<origin rpy='0 1.57075 0' xyz='0 0 -0.3'/>
+		</visual>
+		<!-- <inertial>
+	      <origin rpy="0 0 0" xyz="0 0 0"/>
+	      <mass value="0.0001"/>
+	      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+	    </inertial> -->
+	    <collision>
+			<geometry>
+				<box size='0.6 0.1 0.2'/>
+			</geometry>
+			<origin rpy='0 1.57075 0' xyz='0 0 -0.3'/>
+		</collision>
+	</link>
+		<joint name='body_to_left_leg' type='fixed'>
+			<parent link='base_link'/>
+			<child link='left_leg'/>
+			<origin xyz='0 -0.22 0.25'/>
+		</joint>
+
+<!-- HEAD & JOINT TO BODY -->
+	<link name='head'>
+		<visual>
+			<geometry>
+				<sphere radius='0.2'/>
+			</geometry>
+			<material name='white'/>
+		</visual>
+		<!-- <inertial>
+	      <origin rpy="0 0 0" xyz="0 0 0"/>
+	      <mass value="0.0001"/>
+	      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+	    </inertial> -->
+	    <collision>
+			<geometry>
+				<sphere radius='0.2'/>
+			</geometry>
+		</collision>
+	</link>
+		<joint name='head_to_body' type='fixed'>
+			<parent link='base_link'/>
+			<child link='head'/>
+			<origin xyz='0 0 0.3'/>
+		</joint>
+
+<!-- BOX & JOINT TO HEAD -->
+	<link name='box'>
+		<visual>
+			<geometry>
+				<box size='0.08 0.08 0.08'/>
+			</geometry>
+		</visual>
+		<!-- <inertial>
+	      <origin rpy="0 0 0" xyz="0 0 0"/>
+	      <mass value="0.0001"/>
+	      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+	    </inertial> -->
+	    <collision>
+			<geometry>
+				<box size='0.08 0.08 0.08'/>
+			</geometry>
+		</collision>
+	</link>
+		<joint name='box_to_head' type='fixed'>
+			<parent link='head'/>
+			<child link='box'/>
+			<origin xyz='0.1814 0 0.1414'/>
+		</joint>
+
+	<gazebo>
+		<plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+			<robotNamespace>/</robotNamespace>
+		</plugin>
+	</gazebo>
+
+</robot>

@@ -1,0 +1,17 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- <arg name="world_name" value="$(rospack find r2d2_description)/worlds/r2d2.world"/> -->
+    <!-- <arg name="world_name" value="/usr/share/gazebo-7/media/dem/mongolia_129.dem.world"/> -->
+    <arg name="world_name" value="/usr/share/gazebo-7/media/dem/test_dem.world"/>
+    <!-- <arg name="world_name" value="/usr/share/gazebo-7/worlds/heightmap_dem.world"/> -->
+  </include>
+
+	<node name="r2d2" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+	args="-file $(find r2d2_description)/urdf/r2d2.urdf -urdf -x 0 -y 0 -z 0 -model r2d2"/><!-- -param robot_description"/-->
+
+</launch>
+
+<!-- rosrun gazebo_ros spawn_model -file urdf/r2d2.urdf -urdf -x 0 -y 0 -z 1 -model r2d2 -->
+
+<!-- <node name="spawn_table" pkg="gazebo" type="spawn_model" args="-urdf -param table_description -z 0.01 -model table_model" respawn="false" output="screen" /> -->

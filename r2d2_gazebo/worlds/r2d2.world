@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <!-- <include> -->
+      <!-- <uri>model://ground_plane</uri> -->
+      <!-- <uri>file://usr/share/gazebo-7/worlds/camera.dem</uri> -->
+    <!-- </include> -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- <include>
+      <uri>model://gas_station</uri>
+      <name>gas_station</name>
+      <pose>-2.0 7.0 0 0 0 0</pose>
+    </include> -->
+
+    <model name="heightmap">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <heightmap>
+              <uri>file://r2d2_gazebo/mongolia_129.dem</uri>
+              <size>150 150 50</size>
+              <pos>0 0 0</pos>
+            </heightmap>
+          </geometry>
+        </collision>
+
+  </world>
+</sdf>
+
