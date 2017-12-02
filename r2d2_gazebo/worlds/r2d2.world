@@ -1,32 +1,58 @@
 <?xml version="1.0" ?>
-<sdf version="1.4">
+<sdf version="1.5">
   <world name="default">
-    <!-- <include> -->
-      <!-- <uri>model://ground_plane</uri> -->
-      <!-- <uri>file://usr/share/gazebo-7/worlds/camera.dem</uri> -->
-    <!-- </include> -->
+    <!-- A global light source -->
     <include>
       <uri>model://sun</uri>
     </include>
-    <!-- <include>
-      <uri>model://gas_station</uri>
-      <name>gas_station</name>
-      <pose>-2.0 7.0 0 0 0 0</pose>
-    </include> -->
-
-    <model name="heightmap">
+    <model name="Mongolian Plains">
       <static>true</static>
       <link name="link">
         <collision name="collision">
           <geometry>
             <heightmap>
-              <uri>file://r2d2_gazebo/mongolia_129.dem</uri>
-              <size>150 150 50</size>
+              <!-- <uri>file://media/dem/volcano.tif</uri> -->
+              <uri>file://mongolia_129.dem</uri>
+              <!-- <uri>file://media/dem/mongolia_129.dem</uri> -->
+              <size>129 129 80</size>
               <pos>0 0 0</pos>
             </heightmap>
           </geometry>
         </collision>
-
+        <visual name="visual_abcedf">
+          <geometry>
+            <heightmap>
+              <use_terrain_paging>false</use_terrain_paging>
+              <texture>
+                <diffuse>file://media/materials/textures/dirt_diffusespecular.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>1</size>
+              </texture>
+              <texture>
+                <diffuse>file://media/materials/textures/grass_diffusespecular.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>1</size>
+              </texture>
+              <texture>
+                <diffuse>file://media/materials/textures/fungus_diffusespecular.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>1</size>
+              </texture>
+              <blend>
+                <min_height>2</min_height>
+                <fade_dist>5</fade_dist>
+              </blend>
+              <blend>
+                <min_height>4</min_height>
+                <fade_dist>5</fade_dist>
+              </blend>
+              <uri>file://mongolia_129.dem</uri>
+              <size>129 129 80</size>
+              <pos>0 0 0</pos>
+            </heightmap>
+          </geometry>
+        </visual>
+      </link>
+    </model>
   </world>
 </sdf>
-
